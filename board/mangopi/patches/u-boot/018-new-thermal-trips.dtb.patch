@@ -1,0 +1,47 @@
+diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+index 28e0eac5a9..fa62ec4182 100644
+--- a/arch/arm/dts/sun50i-h616.dtsi
++++ b/arch/arm/dts/sun50i-h616.dtsi
+@@ -1344,18 +1344,42 @@
+ 			polling-delay = <1000>;
+ 			thermal-sensors = <&ths 0>;
+ 			sustainable-power = <1100>;
++
++			trips {
++				gpu_temp_critical: trip-point@0 {
++					temperature = <110000>;
++					type = "critical";
++					hysteresis = <0>;
++				};
++			};
+ 		};
+ 
+ 		ve-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 1>;
++
++			trips {
++				ve_temp_critical: trip-point@0 {
++					temperature = <110000>;
++					type = "critical";
++					hysteresis = <0>;
++				};
++			};
+ 		};
+ 
+ 		ddr-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 3>;
++
++			trips {
++				ddr_temp_critical: trip-point@0 {
++					temperature = <110000>;
++					type = "critical";
++					hysteresis = <0>;
++				};
++			};
+ 		};
+ 	};
+ 

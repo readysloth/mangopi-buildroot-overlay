@@ -1,0 +1,45 @@
+diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+index ef0dbe5da4..25bdd40b15 100644
+--- a/arch/arm/dts/sun50i-h616.dtsi
++++ b/arch/arm/dts/sun50i-h616.dtsi
+@@ -130,6 +130,7 @@
+ 			compatible = "allwinner,sun50i-h616-de33",
+ 				     "allwinner,sun50i-a64-de2";
+ 			reg = <0x1000000 0x400000>;
++			allwinner,sram = <&de3_sram 1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x1000000 0x400000>;
+@@ -202,12 +203,32 @@
+ 			#size-cells = <1>;
+ 			ranges;
+ 
++			sram_a2: sram@100000 {
++				compatible = "mmio-sram";
++				reg = <0x00100000 0x18000>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++				ranges = <0 0x00100000 0x18000>;
++
++				scpi_sram: scpi-sram@17c00 {
++					compatible = "arm,scp-shmem";
++					reg = <0x17c00 0x200>;
++				};
++			};
++
++
+ 			sram_c: sram@28000 {
+ 				compatible = "mmio-sram";
+ 				reg = <0x00028000 0x30000>;
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+ 				ranges = <0 0x00028000 0x30000>;
++
++				de3_sram: sram-section@0 {
++					compatible = "allwinner,sun50i-h616-sram-c1",
++						     "allwinner,sun50i-a64-sram-c";
++					reg = <0x0000 0x1e000>;
++				};
+ 			};
+ 
+ 			sram_c1: sram@1a00000 {

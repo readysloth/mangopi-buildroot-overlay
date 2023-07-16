@@ -1,0 +1,79 @@
+diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+index 9cd13ed1a2..40287b0de0 100644
+--- a/arch/arm/dts/sun50i-h616.dtsi
++++ b/arch/arm/dts/sun50i-h616.dtsi
+@@ -1075,15 +1075,68 @@
+ 					type = "passive";
+ 					hysteresis = <0>;
+ 				};
++
++				cpu_warm: cpu_warm {
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_hot_pre: cpu_hot_pre {
++					temperature = <80000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_hot: cpu_hot {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_very_hot_pre: cpu_very_hot_pre {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_very_hot: cpu_very_hot {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_crit: cpu_crit {
++					temperature = <105000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
+ 			};
+ 
+ 			cooling-maps {
+-				map0 {
+-					trip = <&cpu_target>;
+-					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				cpu_warm_limit_cpu {
++					trip = <&cpu_warm>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT 2>;
++				};
++
++				cpu_hot_pre_limit_cpu {
++					trip = <&cpu_hot_pre>;
++					cooling-device = <&cpu0 2 3>;
++				};
++
++				cpu_hot_limit_cpu {
++					trip = <&cpu_hot>;
++					cooling-device = <&cpu0 3 4>;
++				};
++
++				cpu_very_hot_pre_limit_cpu {
++					trip = <&cpu_very_hot_pre>;
++					cooling-device = <&cpu0 5 6>;
++				};
++
++				cpu_very_hot_limit_cpu {
++					trip = <&cpu_very_hot>;
++					cooling-device = <&cpu0 7 THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 		};

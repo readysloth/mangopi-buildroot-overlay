@@ -1,0 +1,18 @@
+diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+index fc5c2002ca..71f7fa8894 100644
+--- a/arch/arm/dts/sun50i-h616.dtsi
++++ b/arch/arm/dts/sun50i-h616.dtsi
+@@ -591,6 +591,13 @@
+ 			status = "disabled";
+ 		};
+ 
++    hdmi_audio: hdmi-audio@1 {
++			compatible = "allwinner,sunxi-hdmi-machine";
++			sunxi,cpudai-controller = <&ahub_i2s1>;
++			sunxi,snddaudio-codec = "hdmi-audio-codec.4.auto";
++			status = "okay";
++		};
++
+ 		uart0: serial@5000000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x05000000 0x400>;
