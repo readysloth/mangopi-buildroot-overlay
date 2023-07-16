@@ -1,0 +1,6 @@
+config BR2_PACKAGE_DATETIME_RESTORE
+	bool "datetime-restore"
+	help
+		Daemon that saves current datetime to file, so it could be
+		loaded on next boot
+

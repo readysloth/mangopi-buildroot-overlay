@@ -1,0 +1,35 @@
+#!/sbin/openrc-run
+
+description="Daemon that saves current datetime to file, so it could be \
+loaded on next boot"
+
+command_background=true
+extra_commands="update_closest_date"
+
+
+update_closest_date() {
+  date +%s > /etc/closest.date
+}
+
+depend() {
+  need localmount
+  use logger
+}
+
+start_pre() {
+  if [ ! -a /etc/closest.date ]
+  then
+    stat --format=%W /etc/ > /etc/closest.date
+  fi
+}
+
+start() {
+  ebegin "Starting datetime restore"
+  date +%s -s @$(cat /etc/closest.date) > /dev/null 2>/dev/null
+}
+
+stop() {
+  ebegin "Stopping datetime restore"
+  update_closest_date
+  einfo "Saved '$(date --date="@$(cat /etc/closest.date)")' to /etc/closest.date"
+}
