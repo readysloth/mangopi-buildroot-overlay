@@ -1,1 +1,2 @@
 source "$BR2_EXTERNAL_MANGOPI_MQ_QUAD_PATH/package/datetime-restore/Config.in"
+source "$BR2_EXTERNAL_MANGOPI_MQ_QUAD_PATH/package/telegram-cctv/Config.in"

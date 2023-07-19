@@ -1,0 +1,6 @@
+config BR2_PACKAGE_TELEGRAM_CCTV
+	bool "telegram-cctv"
+	help
+		Implements capturing photos from video-device via v4l2 and sending
+		them to telegram channel
+
