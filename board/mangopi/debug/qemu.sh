@@ -5,10 +5,13 @@ INITRD="$2"
 DTB="$3"
 
 qemu-system-aarch64 \
+  -s \
   -m 8096 \
+  -smp 1 \
   -machine virt \
   -cpu cortex-a57 \
   -nographic \
   -kernel "$KERNEL" \
   -initrd "$INITRD" \
-  -dtb "$DTB"
+  -dtb "$DTB" \
+  -append "nokaslr"
