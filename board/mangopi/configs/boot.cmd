@@ -1,6 +1,9 @@
 setenv bootargs console=ttyS0,115200 earlyprintk root=/dev/mmcblk0p2 rootwait
 
+echo > Loading Kernel...
 fatload mmc 0 $kernel_addr_r Image
+echo > Loading FDT...
 fatload mmc 0 $fdt_addr_r u-boot.dtb
 
+echo > Booting System...
 booti $kernel_addr_r - $fdt_addr_r
