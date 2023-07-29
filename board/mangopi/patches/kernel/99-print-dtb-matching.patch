@@ -1,31 +1,37 @@
 diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 8cefe5a..e29646d 100644
+index 8cefe5a..7b8ce51 100644
 --- a/drivers/of/device.c
 +++ b/drivers/of/device.c
-@@ -240,11 +240,40 @@ const void *of_device_get_match_data(const struct device *dev)
+@@ -240,11 +240,46 @@ const void *of_device_get_match_data(const struct device *dev)
  {
  	const struct of_device_id *match;
  
++#define TEST_COMPAT(I, C) \
++	dev->driver->of_match_table->compatible[I] && \
++	dev->driver->of_match_table->compatible[I] == C
++
 +#define STR_PROTECT(X) X ? X : "NULL"
-+	bool debug = dev->driver->of_match_table && \
-+							dev->driver->of_match_table->compatible && \
-+							dev->driver->of_match_table->compatible[0] == 'd' && \
-+							dev->driver->of_match_table->compatible[1] == 'e' && \
-+							dev->driver->of_match_table->compatible[2] == 'b' && \
-+							dev->driver->of_match_table->compatible[3] == 'u' && \
-+							dev->driver->of_match_table->compatible[4] == 'g';
++
++	bool debug = dev->driver &&
++		dev->driver->of_match_table && \
++		TEST_COMPAT(0, 'd') && \
++		TEST_COMPAT(1, 'e') && \
++		TEST_COMPAT(2, 'b') && \
++		TEST_COMPAT(3, 'u') && \
++		TEST_COMPAT(4, 'g');
 +
  	match = of_match_device(dev->driver->of_match_table, dev);
 +	if (debug){
-+			printk("match for %s %s found\n",
++			printk("match for %s %s found: %s\n",
 +						dev->of_node ? STR_PROTECT(dev->of_node->full_name) : "none",
-+						match ? "\b" : "not");
++						match ? "\b" : "not",
++						STR_PROTECT(match->compatible));
 +	}
  	if (!match)
  		return NULL;
  
 +	if (debug){
-+			struct property *compat = of_get_property(dev->of_node, "compatible", NULL);
++			struct property *compat = of_find_property(dev->of_node, "compatible", NULL);
 +			if (compat->value){
 +				printk("of_node %s tested with: %p\n",
 +							dev->of_node ? STR_PROTECT(dev->of_node->full_name) : "none",
