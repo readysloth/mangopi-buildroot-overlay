@@ -1,11 +1,14 @@
 /dts-v1/;
 
 / {
-	interrupt-parent = <0x8002>;
-	model = "linux,dummy-virt";
 	#size-cells = <0x02>;
 	#address-cells = <0x02>;
+
+	model = "OrangePi Zero2";
 	compatible = "xunlong,orangepi-zero2\0allwinner,sun50i-h616";
+
+// qemu specific
+	interrupt-parent = <0x8002>;
 
 	psci {
 		migrate = <0x84000005>;
@@ -312,9 +315,6 @@
 		compatible = "arm,pl011\0arm,primecell";
 	};
 
-	pmu {
-	};
-
 	intc@8000000 {
 		phandle = <0x8002>;
 		reg = <0x00 0x8000000 0x00 0x10000 0x00 0x8010000 0x00 0x10000>;
@@ -339,6 +339,27 @@
 		compatible = "cfi-flash";
 	};
 
+	timer {
+		interrupts = <0x01 0x0d 0x104 0x01 0x0e 0x104 0x01 0x0b 0x104 0x01 0x0a 0x104>;
+		always-on;
+		compatible = "arm,armv7-timer";
+	};
+
+	apb-pclk {
+		phandle = <0x8000>;
+		clock-output-names = "clk24mhz";
+		clock-frequency = <0x16e3600>;
+		#clock-cells = <0x00>;
+		compatible = "fixed-clock";
+	};
+
+	chosen {
+		stdout-path = "/pl011@9000000";
+		rng-seed = <0x58b677a3 0xe02614cc 0xa6764dbf 0xe48418cb 0xdfab91ec 0x764a72a3 0x2a94ac82 0x8e271614>;
+		kaslr-seed = <0x5f29de73 0xe7f581f>;
+	};
+
+// mangopi specific
 	cpus {
 		#address-cells = <0x01>;
 		#size-cells = <0x00>;
@@ -393,24 +414,29 @@
 		};
 	};
 
-	timer {
-		interrupts = <0x01 0x0d 0x104 0x01 0x0e 0x104 0x01 0x0b 0x104 0x01 0x0a 0x104>;
-		always-on;
-		compatible = "arm,armv7-timer";
+	reserved-memory {
+		#address-cells = <0x02>;
+		#size-cells = <0x02>;
+		ranges;
+
+		secmon@40000000 {
+			reg = <0x00 0x40000000 0x00 0x80000>;
+			no-map;
+		};
 	};
 
-	apb-pclk {
-		phandle = <0x8000>;
-		clock-output-names = "clk24mhz";
-		clock-frequency = <0x16e3600>;
+	osc24M-clk {
 		#clock-cells = <0x00>;
 		compatible = "fixed-clock";
+		clock-frequency = <0x16e3600>;
+		clock-output-names = "osc24M";
+		phandle = <0x0f>;
 	};
 
-	chosen {
-		stdout-path = "/pl011@9000000";
-		rng-seed = <0x86cc050a 0xe47a5cb9 0xc0946163 0xb24a42fc 0x140d0b27 0x51ee40a0 0xb96f91da 0xecb16acf>;
-		kaslr-seed = <0x8aee5e4c 0xd4493f3>;
+	pmu {
+		compatible = "arm,cortex-a53-pmu";
+		interrupts = <0x00 0x8c 0x04 0x00 0x8d 0x04 0x00 0x8e 0x04 0x00 0x8f 0x04>;
+		interrupt-affinity = <0x06 0x07 0x08 0x09>;
 	};
 
 	soc {
@@ -472,7 +498,7 @@
 			clock-names = "core\0bus";
 			resets = <0x02 0x03>;
 			status = "okay";
-			mali-supply = <0x0d>;
+			phy-supply = <0x0d>;
 			phandle = <0x4f>;
 		};
 
@@ -1909,5 +1935,63 @@
 			opp-microvolt = <0x10c8e0>;
 			clock-latency-ns = <0x3b9b0>;
 		};
+	};
+
+	vcc5v {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc-5v";
+		regulator-min-microvolt = <0x4c4b40>;
+		regulator-max-microvolt = <0x4c4b40>;
+		regulator-always-on;
+		phandle = <0x4c>;
+	};
+
+	regulator-usb1-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb1-vbus";
+		regulator-min-microvolt = <0x4c4b40>;
+		regulator-max-microvolt = <0x4c4b40>;
+		vin-supply = <0x4c>;
+		enable-active-high;
+		gpio = <0x1e 0x02 0x10 0x00>;
+		phandle = <0x35>;
+	};
+
+	vcc3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc-3v3";
+		regulator-min-microvolt = <0x325aa0>;
+		regulator-max-microvolt = <0x325aa0>;
+		regulator-always-on;
+		phandle = <0x11>;
+	};
+
+	vcc33-wifi {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc33-wifi";
+		regulator-min-microvolt = <0x325aa0>;
+		regulator-max-microvolt = <0x325aa0>;
+		regulator-always-on;
+		vin-supply = <0x4c>;
+		phandle = <0x20>;
+	};
+
+	vcc-wifi-io {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc-wifi-io";
+		regulator-min-microvolt = <0x1b7740>;
+		regulator-max-microvolt = <0x1b7740>;
+		regulator-always-on;
+		vin-supply = <0x20>;
+		phandle = <0x21>;
+	};
+
+	wifi-pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		clocks = <0x10 0x01>;
+		clock-names = "osc32k-out";
+		reset-gpios = <0x1e 0x06 0x12 0x01>;
+		post-power-on-delay-ms = <0xc8>;
+		phandle = <0x22>;
 	};
 };
