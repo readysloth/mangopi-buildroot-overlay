@@ -1896,44 +1896,57 @@
 	};
 
 	opp-table-cpu {
-		compatible = "operating-points-v2";
+		compatible = "allwinner,sun50i-h616-operating-points";
+		nvmem-cells = <0x55>;
 		opp-shared;
 		phandle = <0x03>;
 
 		opp-480000000 {
-			opp-hz = <0x00 0x1c9c3800>;
-			opp-microvolt = <0xc8320>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x1c9c3800>;
+			opp-microvolt-speed0 = <0xc8320 0xc8320 0x10c8e0>;
+			opp-microvolt-speed1 = <0xd6d80 0xd6d80 0x10c8e0>;
+			opp-microvolt-speed2 = <0xd6d80 0xd6d80 0x10c8e0>;
 		};
 
 		opp-600000000 {
-			opp-hz = <0x00 0x23c34600>;
-			opp-microvolt = <0xc8320>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x23c34600>;
+			opp-microvolt-speed0 = <0xc8320 0xc8320 0x10c8e0>;
+			opp-microvolt-speed1 = <0xd6d80 0xd6d80 0x10c8e0>;
+			opp-microvolt-speed2 = <0xd6d80 0xd6d80 0x10c8e0>;
 		};
 
 		opp-792000000 {
-			opp-hz = <0x00 0x2f34f600>;
-			opp-microvolt = <0xd1f60>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x2f34f600>;
+			opp-microvolt-speed0 = <0xd1f60 0xd1f60 0x10c8e0>;
+			opp-microvolt-speed1 = <0xe57e0 0xe57e0 0x10c8e0>;
+			opp-microvolt-speed2 = <0xe57e0 0xe57e0 0x10c8e0>;
 		};
 
 		opp-1008000000 {
-			opp-hz = <0x00 0x3c14dc00>;
-			opp-microvolt = <0xdbba0>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x3c14dc00>;
+			opp-microvolt-speed0 = <0xdbba0 0xdbba0 0x10c8e0>;
+			opp-microvolt-speed1 = <0xf9060 0xf9060 0x10c8e0>;
+			opp-microvolt-speed2 = <0xf9060 0xf9060 0x10c8e0>;
 		};
 
 		opp-1200000000 {
-			opp-hz = <0x00 0x47868c00>;
-			opp-microvolt = <0xea600>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x47868c00>;
+			opp-microvolt-speed0 = <0xea600 0xea600 0x10c8e0>;
+			opp-microvolt-speed1 = <0x10c8e0 0x10c8e0 0x10c8e0>;
+			opp-microvolt-speed2 = <0x10c8e0 0x10c8e0 0x10c8e0>;
 		};
 
 		opp-1512000000 {
-			opp-hz = <0x00 0x5a1f4a00>;
-			opp-microvolt = <0x10c8e0>;
 			clock-latency-ns = <0x3b9b0>;
+			opp-hz = <0x00 0x5a1f4a00>;
+			opp-microvolt-speed0 = <0x10c8e0 0x10c8e0 0x10c8e0>;
+			opp-microvolt-speed1 = <0x10c8e0 0x10c8e0 0x10c8e0>;
+			opp-microvolt-speed2 = <0x10c8e0 0x10c8e0 0x10c8e0>;
 		};
 	};
 
