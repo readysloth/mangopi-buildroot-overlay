@@ -5,7 +5,7 @@
 ################################################################################
 
 TELEGRAM_CCTV_LICENSE = GPL-3.0+
-TELEGRAM_CCTV_VERSION = 283d7c4f2efd27ddc1f451bc0d6f806313f65856
+TELEGRAM_CCTV_VERSION = d1e073a
 TELEGRAM_CCTV_SITE = git@github.com:readysloth/telegram-cctv.git
 TELEGRAM_CCTV_SITE_METHOD = git
 TELEGRAM_CCTV_CONFIGURE_OPTS = CFLAGS='$(TARGET_CFLAGS) -DTG_BOT_TOKEN="\"${TG_CCTV_TOKEN}\"" -DTG_CHANNEL="\"${TG_CCTV_CHANNEL}\""'
