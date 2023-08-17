@@ -1,0 +1,13 @@
+diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+index 34c4e8415d..9138ea4beb 100644
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+@@ -48,7 +48,7 @@
+ 
+ 		led-1 {
+ 			function = LED_FUNCTION_STATUS;
+-			color = <LED_COLOR_ID_GREEN>;
++			color = <LED_COLOR_ID_BLUE>;
+ 			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
+ 		};
+ 	};
