@@ -17,7 +17,7 @@ depend() {
 }
 
 start_pre() {
-  if [ ! -a /etc/closest.date ]
+  if [ ! -f /etc/closest.date ]
   then
     stat --format=%W /etc/ > /etc/closest.date
   fi

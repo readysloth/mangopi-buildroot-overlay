@@ -5,7 +5,6 @@ of alcatel dongle"
 
 command_background=true
 
-
 depend() {
   use logger
 }
