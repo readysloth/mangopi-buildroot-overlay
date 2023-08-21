@@ -13,6 +13,7 @@ define ALCATEL_DONGLE_INSTALL_TARGET_CMDS
 	$(INSTALL) -m +r -D $(ALCATEL_DONGLE_PKGDIR)/alcatel-conf/hostapd.conf $(TARGET_DIR)/etc/
 	$(INSTALL) -m +r -D $(ALCATEL_DONGLE_PKGDIR)/alcatel-conf/tinyproxy.conf $(TARGET_DIR)/etc/tinyproxy/
 	$(INSTALL) -m +r -D $(ALCATEL_DONGLE_PKGDIR)/alcatel-conf/dnsmasq.conf $(TARGET_DIR)/etc/
+	$(INSTALL) -m +r -D $(ALCATEL_DONGLE_PKGDIR)/alcatel-conf/nginx.conf $(TARGET_DIR)/etc/
 endef
 
 $(eval $(generic-package))
