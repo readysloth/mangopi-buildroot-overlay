@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+description="Daemon that capture photos from video-device via v4l2 and send \
+them to telegram channel"
+
+command_background=true
+
+depend() {
+  need net
+  after alcatel-dongle
+}
+
+start() {
+  ebegin "Starting telegram-cctv"
+  echo 1 > /sys/class/leds/blue:status/brightness
+  tg-cctv
+}

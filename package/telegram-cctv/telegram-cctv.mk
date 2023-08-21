@@ -16,6 +16,8 @@ endef
 
 define TELEGRAM_CCTV_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 755 -D $(@D)/tg-cctv $(TARGET_DIR)/usr/bin
+	$(INSTALL) -m +rx -D $(TELEGRAM_CCTV_PKGDIR)/telegram-cctv $(TARGET_DIR)/etc/init.d/telegram-cctv
+	ln --symbolic --relative $(TARGET_DIR)/etc/{init.d,runlevels/default}/telegram-cctv
 endef
 
 $(eval $(generic-package))
