@@ -23,7 +23,7 @@ start() {
   hostapd -B -P /var/run/hostapd.pid /etc/hostapd.conf
 
   einfo "Starting nginx"
-  nginx -c /etc/nginx.conf
+  nginx
 }
 
 stop() {
