@@ -22,6 +22,9 @@ start() {
   einfo "Starting hostapd"
   hostapd -B -P /var/run/hostapd.pid /etc/hostapd.conf
 
+  einfo "Changing TTL"
+  sysctl -w net.ipv4.ip_default_ttl=65
+
   einfo "Starting nginx"
   nginx
 }
