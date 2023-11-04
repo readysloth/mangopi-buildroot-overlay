@@ -4,14 +4,15 @@ description="Daemon that capture photos from video-device via v4l2 and send \
 them to telegram channel"
 
 command_background=true
+output_log="/var/log/telegram-cctv.log"
+error_log="/var/log/telegram-cctv.err"
 
 depend() {
   need net
-  after alcatel-dongle
 }
 
 start() {
   ebegin "Starting telegram-cctv"
   echo 1 > /sys/class/leds/blue:status/brightness
-  tg-cctv
+  tg-cctv /dev/video0 disable_usb longer_at_night
 }

@@ -1,9 +1,9 @@
-config BR2_PACKAGE_ALCATEL_DONGLE
-	bool "alcatel-dongle"
+config BR2_PACKAGE_4G_DONGLE
+	bool "4G-dongle"
 	select BR2_PACKAGE_IW
 	select BR2_PACKAGE_HOSTAPD
 	select BR2_PACKAGE_DNSMASQ
 	select BR2_PACKAGE_NGINX
 	help
 		Daemon that creates reverse-proxy on wlan0 for web interface
-		of alcatel dongle
+		of 4G dongle
