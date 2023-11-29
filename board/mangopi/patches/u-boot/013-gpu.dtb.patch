@@ -7,7 +7,7 @@ index 24cc85b0f6..95b81bd780 100644
  };
  
 +&gpu {
-+	mali-supply = <&reg_dcdcc>;
++	mali-supply = <&reg_dcdc1>;
 +	status = "okay";
 +};
 +
