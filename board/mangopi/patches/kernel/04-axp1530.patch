@@ -19,19 +19,18 @@ index 8fd6727dc30a..6bfb931a580e 100644
  static const struct of_device_id axp20x_i2c_of_match[] = {
  	{ .compatible = "x-powers,axp152", .data = (void *)AXP152_ID },
 +	{ .compatible = "x-powers,axp1530", .data = (void *)AXP1530_ID},
+ 	{ .compatible = "x-powers,axp192", .data = (void *)AXP192_ID },
  	{ .compatible = "x-powers,axp202", .data = (void *)AXP202_ID },
  	{ .compatible = "x-powers,axp209", .data = (void *)AXP209_ID },
- 	{ .compatible = "x-powers,axp221", .data = (void *)AXP221_ID },
 @@ -73,6 +74,7 @@ MODULE_DEVICE_TABLE(of, axp20x_i2c_of_match);
  
  static const struct i2c_device_id axp20x_i2c_id[] = {
  	{ "axp152", 0 },
 +	{ "axp1530", 0 },
+ 	{ "axp192", 0 },
  	{ "axp202", 0 },
  	{ "axp209", 0 },
- 	{ "axp221", 0 },
 diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-index 880c41fa7021..6caa7e87ad80 100644
 --- a/drivers/mfd/axp20x.c
 +++ b/drivers/mfd/axp20x.c
 @@ -34,6 +34,7 @@
@@ -39,9 +38,9 @@ index 880c41fa7021..6caa7e87ad80 100644
  static const char * const axp20x_model_names[] = {
  	"AXP152",
 +	"AXP1530",
+ 	"AXP192",
  	"AXP202",
  	"AXP209",
- 	"AXP221",
 @@ -66,6 +67,24 @@ static const struct regmap_access_table axp152_volatile_table = {
  	.n_yes_ranges	= ARRAY_SIZE(axp152_volatile_ranges),
  };
@@ -144,8 +143,6 @@ index 880c41fa7021..6caa7e87ad80 100644
  	case AXP202_ID:
  	case AXP209_ID:
  		axp20x->nr_cells = ARRAY_SIZE(axp20x_cells);
-diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-index 9ab0e2fca7ea..cad25754500f 100644
 --- a/include/linux/mfd/axp20x.h
 +++ b/include/linux/mfd/axp20x.h
 @@ -12,6 +12,7 @@
@@ -153,9 +150,9 @@ index 9ab0e2fca7ea..cad25754500f 100644
  enum axp20x_variants {
  	AXP152_ID = 0,
 +	AXP1530_ID,
+ 	AXP192_ID,
  	AXP202_ID,
  	AXP209_ID,
- 	AXP221_ID,
 @@ -45,6 +46,18 @@ enum axp20x_variants {
  #define AXP152_DCDC_FREQ		0x37
  #define AXP152_DCDC_MODE		0x80

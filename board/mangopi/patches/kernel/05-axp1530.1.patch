@@ -1,18 +1,9 @@
-AXP1530 has a few regulators that are controlled via I2C Bus.
-
-Add support for them.
-
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
- drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
 diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index d260c442b788..9420839ff4f9 100644
+index c657820b0bbb..23b55b028bb0 100644
 --- a/drivers/regulator/axp20x-regulator.c
 +++ b/drivers/regulator/axp20x-regulator.c
-@@ -1001,6 +1001,40 @@ static const struct regulator_desc axp813_regulators[] = {
- 		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
+@@ -1213,6 +1213,40 @@ static const struct regulator_desc axp15060_regulators[] = {
+ 	AXP_DESC_FIXED(AXP15060, RTC_LDO, "rtc-ldo", NULL, 1800),
  };
  
 +static const struct linear_range axp1530_dcdc1_ranges[] = {
@@ -52,20 +43,7 @@ index d260c442b788..9420839ff4f9 100644
  static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
  {
  	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
-@@ -1040,6 +1074,12 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- 		def = 3000;
- 		step = 150;
- 		break;
-+	case AXP1530_ID:
-+		/*
-+		 * Do not set the DCDC frequency on AXP1530
-+		 */
-+		return 0;
-+		break;
- 	default:
- 		dev_err(&pdev->dev,
- 			"Setting DCDC frequency for unsupported AXP variant\n");
-@@ -1220,6 +1260,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+@@ -1463,6 +1497,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
  	bool drivevbus = false;
  
  	switch (axp20x->variant) {
@@ -76,4 +54,3 @@ index d260c442b788..9420839ff4f9 100644
  	case AXP202_ID:
  	case AXP209_ID:
  		regulators = axp20x_regulators;
--- 

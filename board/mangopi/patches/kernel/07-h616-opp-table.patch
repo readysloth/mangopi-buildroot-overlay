@@ -10,10 +10,10 @@ index e85703651098..e4fa483c8a84 100644
  	{ .compatible = "allwinner,sun50i-h6", },
 +	{ .compatible = "allwinner,sun50i-h616", },
 
- 	{ .compatible = "arm,vexpress", },
+	{ .compatible = "apple,arm-platform", },
 
+	{ .compatible = "arm,vexpress", },
  	{ .compatible = "calxeda,highbank", },
- 	{ .compatible = "calxeda,ecx-2000", },
 diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
 index 1acec58c33c3..f8d5c30e56d0 100644
 --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
