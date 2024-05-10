@@ -33,7 +33,7 @@ index bff30fa24f..f9b5d25533 100644
 +};
 +
 +&hdmi {
-+	hvcc-supply = <&reg_aldo1>;
++	hvcc = <&reg_aldo1>;
 +	status = "okay";
 +};
 +
