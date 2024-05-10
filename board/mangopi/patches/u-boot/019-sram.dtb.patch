@@ -36,7 +36,7 @@ index ef0dbe5da4..25bdd40b15 100644
  				ranges = <0 0x00028000 0x30000>;
 +
 +				de3_sram: sram-section@0 {
-+					compatible = "allwinner,sun50i-h616-sram-c1",
++					compatible = "allwinner,sun50i-h616-sram-c",
 +						     "allwinner,sun50i-a64-sram-c";
 +					reg = <0x0000 0x1e000>;
 +				};
