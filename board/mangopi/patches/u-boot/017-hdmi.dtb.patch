@@ -1,7 +1,7 @@
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
 index bff30fa24f..f9b5d25533 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
 @@ -24,6 +24,17 @@
  		stdout-path = "serial0:115200n8";
  	};
@@ -20,6 +20,8 @@ index bff30fa24f..f9b5d25533 100644
  	leds {
  		compatible = "gpio-leds";
  
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
 @@ -217,6 +228,25 @@
  	};
  };

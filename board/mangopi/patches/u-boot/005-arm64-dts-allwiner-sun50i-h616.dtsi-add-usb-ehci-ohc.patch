@@ -1,8 +1,17 @@
+From d28af5cc997ec8e816701dbff92d9cc32a048500 Mon Sep 17 00:00:00 2001
+From: The-going <48602507+The-going@users.noreply.github.com>
+Date: Sun, 13 Nov 2022 23:15:38 +0300
+Subject: arm64: dts: allwiner: sun50i-h616.dtsi: add usb,ehci,ohci
+
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
 diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
-index b5bb1f1494..ca0d19f050 100644
+index b29ce7321317..dd4712a463d7 100644
 --- a/arch/arm/dts/sun50i-h616.dtsi
 +++ b/arch/arm/dts/sun50i-h616.dtsi
-@@ -67,12 +67,12 @@
+@@ -100,12 +100,12 @@ reserved-memory {
  		ranges;
  
  		/*
@@ -17,30 +26,29 @@ index b5bb1f1494..ca0d19f050 100644
  			no-map;
  		};
  	};
-@@ -732,6 +732,8 @@
- 			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
- 			clock-names = "ahb", "mod";
+@@ -590,6 +590,8 @@ spi0: spi@5010000 {
+ 			dmas = <&dma 22>, <&dma 22>;
+ 			dma-names = "rx", "tx";
  			resets = <&ccu RST_BUS_SPI0>;
 +			pinctrl-names = "default";
 +			pinctrl-0 = <&spi0_pins>;
  			status = "disabled";
  			#address-cells = <1>;
  			#size-cells = <0>;
-@@ -745,6 +747,8 @@
- 			clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_SPI1>;
- 			clock-names = "ahb", "mod";
+@@ -605,6 +607,8 @@ spi1: spi@5011000 {
+ 			dmas = <&dma 23>, <&dma 23>;
+ 			dma-names = "rx", "tx";
  			resets = <&ccu RST_BUS_SPI1>;
 +			pinctrl-names = "default";
 +			pinctrl-0 = <&spi1_pins>;
  			status = "disabled";
  			#address-cells = <1>;
  			#size-cells = <0>;
-@@ -953,12 +957,15 @@
- 
+@@ -872,11 +876,14 @@ nmi_intc: interrupt-controller@7010320 {
  		r_pio: pinctrl@7022000 {
  			compatible = "allwinner,sun50i-h616-r-pinctrl";
-+			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
  			reg = <0x07022000 0x400>;
++			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
  			clocks = <&r_ccu CLK_R_APB1>, <&osc24M>,
  				 <&rtc CLK_OSC32K>;
  			clock-names = "apb", "hosc", "losc";
@@ -51,3 +59,6 @@ index b5bb1f1494..ca0d19f050 100644
  
  			/omit-if-no-ref/
  			r_i2c_pins: r-i2c-pins {
+-- 
+2.35.3
+

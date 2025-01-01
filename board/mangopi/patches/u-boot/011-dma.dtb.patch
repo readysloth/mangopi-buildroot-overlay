@@ -19,22 +19,10 @@ index b0d75f6126..f9ae55a472 100644
  			ir_rx_pin: ir-rx-pin {
  				pins = "PH10";
  				function = "ir_rx";
-@@ -513,6 +523,127 @@
+@@ -513,6 +523,115 @@
  			#size-cells = <0>;
  		};
  
-+		dma: dma-controller@3002000 {
-+			compatible = "allwinner,sun50i-h616-dma";
-+			reg = <0x03002000 0x1000>;
-+			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_DMA>, <&ccu CLK_MBUS_DMA>;
-+			clock-names = "bus", "mbus";
-+			dma-channels = <16>;
-+			dma-requests = <49>;
-+			resets = <&ccu RST_BUS_DMA>;
-+			#dma-cells = <1>;
-+		};
-+
 +		codec: codec@05096000 {
 +			#sound-dai-cells = <0>;
 +			compatible = "allwinner,sun50i-h616-codec";

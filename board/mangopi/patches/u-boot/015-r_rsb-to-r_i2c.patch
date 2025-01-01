@@ -3,9 +3,9 @@ index cb8600d0ea..2b763ff62c 100644
 --- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
 +++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
 @@ -96,32 +96,58 @@
- 	status = "okay";
+ 	vmmc-supply = <&reg_dcdce>;
  };
- 
+
 -&r_rsb {
 +&r_i2c {
  	status = "okay";

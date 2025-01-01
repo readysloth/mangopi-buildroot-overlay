@@ -1,0 +1,13 @@
+diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+index a360d8567f..1e3027981c 100644
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+@@ -14,7 +14,7 @@
+ };
+ 
+ &cpu0 {
+-	cpu-supply = <&reg_dcdca>;
++	cpu-supply = <&reg_dcdc2>;
+ };
+ 
+ &gpu {

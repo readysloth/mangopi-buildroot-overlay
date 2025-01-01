@@ -1,11 +1,12 @@
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-index f9b5d25533..1d45876199 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-@@ -70,6 +70,43 @@
+diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
+index 3ab053bb0f..3d98d21cbd 100644
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
+@@ -68,6 +68,43 @@
  		enable-active-high;
  		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
  	};
++
 +
 +	reg_vcc3v3: vcc3v3 {
 +		compatible = "regulator-fixed";
@@ -14,7 +15,6 @@ index f9b5d25533..1d45876199 100644
 +		regulator-max-microvolt = <3300000>;
 +		regulator-always-on;
 +	};
-+
 +
 +	reg_vcc33_wifi: vcc33-wifi {
 +		/* Always on 3.3V regulator for WiFi and BT */
@@ -46,17 +46,18 @@ index f9b5d25533..1d45876199 100644
  };
  
  &ehci1 {
-@@ -102,12 +139,22 @@
+diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+index 0e2d1f1629..596ad08045 100644
+--- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+@@ -30,7 +30,17 @@
  };
  
  &mmc0 {
 -	vmmc-supply = <&reg_dcdce>;
 +	vmmc-supply = <&reg_vcc3v3>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
- 	bus-width = <4>;
- 	status = "okay";
- };
- 
++};
++
 +&mmc1 {
 +	vmmc-supply = <&reg_vcc33_wifi>;
 +	vqmmc-supply = <&reg_vcc_wifi_io>;
@@ -65,12 +66,10 @@ index f9b5d25533..1d45876199 100644
 +	non-removable;
 +	mmc-ddr-1_8v;
 +	status = "okay";
-+};
-+
- &ohci1 {
- 	status = "okay";
  };
-@@ -248,11 +295,11 @@
+ 
+ &r_i2c {
+@@ -191,9 +201,9 @@
  };
  
  &pio {
@@ -85,5 +84,3 @@ index f9b5d25533..1d45876199 100644
 +	vcc-ph-supply = <&reg_vcc3v3>;
 +	vcc-pi-supply = <&reg_vcc3v3>;
  };
- 
- &spi0  {

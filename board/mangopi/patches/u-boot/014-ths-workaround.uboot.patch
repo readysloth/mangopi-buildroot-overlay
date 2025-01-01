@@ -1,10 +1,10 @@
 diff --git a/board/sunxi/board.c b/board/sunxi/board.c
-index 827e545032..5fc2baffdb 100644
+index c6219aed1b..9d97f85340 100644
 --- a/board/sunxi/board.c
 +++ b/board/sunxi/board.c
-@@ -247,6 +247,15 @@ int board_init(void)
- 		}
- 	}
+@@ -227,6 +227,15 @@ int board_init(void)
+ 
+ 	eth_init_board();
  
 +#if CONFIG_MACH_SUN50I_H616
 +	/*
@@ -15,6 +15,6 @@ index 827e545032..5fc2baffdb 100644
 +	writel(0x0, SUNXI_SRAMC_BASE);
 +#endif
 +
- #if CONFIG_IS_ENABLED(DM_I2C)
- 	/*
- 	 * Temporary workaround for enabling I2C clocks until proper sunxi DM
+ 	return 0;
+ }
+ 
