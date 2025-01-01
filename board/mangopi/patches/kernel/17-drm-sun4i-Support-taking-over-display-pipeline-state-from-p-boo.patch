@@ -25,8 +25,8 @@ index 0686b9da9438..1a940ef48671 100644
 --- a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
 +++ b/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
 @@ -976,7 +976,9 @@ static int sun50i_a64_ccu_probe(struct platform_device *pdev)
- 	/* Decrease the PLL AUDIO bias current to reduce noise. */
- 	writel(0x10040000, reg + SUN50I_A64_PLL_AUDIO_BIAS_REG);
+ 	val &= ~GENMASK(19, 16);
+ 	writel(val | (0 << 16), reg + SUN50I_A64_PLL_AUDIO_REG);
  
 -	writel(0x515, reg + SUN50I_A64_PLL_MIPI_REG);
 +	ret = of_property_read_u32_index(of_chosen, "p-boot,framebuffer-start", 0, &val);
@@ -72,9 +72,9 @@ index 7c2f49845576..364a4c051f35 100644
 --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
 +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
 @@ -62,6 +62,7 @@ struct st7703 {
- 
  	struct dentry *debugfs;
  	const struct st7703_panel_desc *desc;
+ 	enum drm_panel_orientation orientation;
 +	bool hw_preenabled;
  };
  

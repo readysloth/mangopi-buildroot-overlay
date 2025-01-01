@@ -1,8 +1,8 @@
 diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-index a8c64c1355..ba4c723e48 100644
+index cb8600d0ea..2b763ff62c 100644
 --- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
 +++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-@@ -139,27 +139,85 @@
+@@ -96,32 +96,58 @@
  	status = "okay";
  };
  
@@ -14,7 +14,10 @@ index a8c64c1355..ba4c723e48 100644
 -		compatible = "x-powers,axp305", "x-powers,axp805",
 -			     "x-powers,axp806";
 -		interrupt-controller;
--		#interrupt-cells = <1>;
++	axp313: pmic@36 {
++		compatible = "x-powers,axp313a";
++		reg = <0x36>;
+ 		#interrupt-cells = <1>;
 -		reg = <0x745>;
 -
 -		x-powers,self-working-mode;
@@ -26,88 +29,70 @@ index a8c64c1355..ba4c723e48 100644
 -		aldoin-supply = <&reg_vcc5v>;
 -		bldoin-supply = <&reg_vcc5v>;
 -		cldoin-supply = <&reg_vcc5v>;
--
--		regulators {
-+	axp1530: pmic@36 {
-+		compatible = "x-powers,axp1530";
-+		status = "okay";
-+		reg = <0x36>;
++		interrupt-controller;
++		interrupt-parent = <&pio>;
++		interrupts = <2 9 IRQ_TYPE_LEVEL_LOW>;	/* PC9 */
 +		wakeup-source;
 +
-+		standby_param: standby_param {
-+			vcc-dram = <0x4>;
-+		};
-+
-+		regulators{
-+			reg_dcdca: dcdca {
++		vin1-supply = <&reg_vcc5v>;
++		vin2-supply = <&reg_vcc5v>;
++		vin3-supply = <&reg_vcc5v>;
+ 
+ 		regulators {
++			/* Supplies VCC-PLL and DRAM */
+ 			reg_aldo1: aldo1 {
 +				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc1v8";
 +			};
 +
-+			reg_dcdcc: dcdcc {
++			/* Supplies VCC-IO, so needs to be always on. */
++			reg_dldo1: dldo1 {
+ 				regulator-always-on;
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+-				regulator-name = "vcc-sys";
++				regulator-name = "vcc3v3";
++			};
++
++			reg_dcdc1: dcdc1 {
 +				regulator-always-on;
 +				regulator-min-microvolt = <810000>;
 +				regulator-max-microvolt = <990000>;
 +				regulator-name = "vdd-gpu-sys";
 +			};
 +
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-eth-mmc";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-name = "axp1530-dcdc1";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+
 +			reg_dcdc2: dcdc2 {
-+				regulator-name = "axp1530-dcdc2";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1540000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-ramp-delay = <200>; // FIXME
 +				regulator-always-on;
++				regulator-min-microvolt = <810000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-name = "vdd-cpu";
 +			};
 +
 +			reg_dcdc3: dcdc3 {
-+				regulator-name = "axp1530-dcdc3";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1840000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
 +				regulator-always-on;
-+			};
-+
-+			reg_dldo1: dldo1 {
-+				regulator-name = "axp1530-dldo1";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+
- 			reg_aldo1: aldo1 {
- 				regulator-always-on;
- 				regulator-min-microvolt = <3300000>;
-@@ -215,34 +273,6 @@
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-name = "vdd-dram";
+ 			};
+ 
+ 			reg_aldo2: aldo2 {	/* 3.3V on headers */
+@@ -138,13 +164,6 @@
+ 				regulator-name = "vcc3v3-ext2";
+ 			};
+ 
+-			reg_bldo1: bldo1 {
+-				regulator-always-on;
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-name = "vcc1v8";
+-			};
+-
+ 			bldo2 {
+ 				/* unused */
+ 			};
+@@ -169,27 +188,6 @@
  				/* unused */
  			};
  
@@ -132,13 +117,6 @@ index a8c64c1355..ba4c723e48 100644
 -				regulator-name = "vdd-dram";
 -			};
 -
--			reg_dcdce: dcdce {
--				regulator-always-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-name = "vcc-eth-mmc";
--			};
--
- 			sw {
- 				/* unused */
- 			};
+ 			reg_dcdce: dcdce {
+ 				regulator-always-on;
+ 				regulator-min-microvolt = <3300000>;

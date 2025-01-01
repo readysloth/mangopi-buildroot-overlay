@@ -21,7 +21,7 @@ index bff30fa24f..f9b5d25533 100644
  		compatible = "gpio-leds";
  
 @@ -217,6 +228,25 @@
- 	cpu-supply = <&reg_dcdca>;
+ 	};
  };
  
 +&de {
