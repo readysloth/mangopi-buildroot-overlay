@@ -1,7 +1,7 @@
-diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 index a16ef32edf..9cd13ed1a2 100644
---- a/arch/arm/dts/sun50i-h616.dtsi
-+++ b/arch/arm/dts/sun50i-h616.dtsi
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 @@ -1033,6 +1033,25 @@
  			#address-cells = <1>;
  			#size-cells = <0>;

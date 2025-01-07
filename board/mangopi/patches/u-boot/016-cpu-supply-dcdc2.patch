@@ -1,7 +1,7 @@
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 index a360d8567f..1e3027981c 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 @@ -14,7 +14,7 @@
  };
  

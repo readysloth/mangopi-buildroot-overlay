@@ -5,17 +5,17 @@ Subject: [PATCH 092/170] arm64:dts: allwinner: sun50i-h616 Add GPU node
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- arch/arm/dts/sun50i-h616.dtsi | 14 ++++++++++++++
+ dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi | 14 ++++++++++++++
  1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 index 30195e477..e5e099068 100644
---- a/arch/arm/dts/sun50i-h616.dtsi
-+++ b/arch/arm/dts/sun50i-h616.dtsi
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 @@ -103,6 +103,20 @@ soc {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x0 0x40000000>;
- 
+ 			resets = <&ccu RST_BUS_CE>;
+ 		};
+
 +		gpu: gpu@1800000 {
 +			compatible = "allwinner,sun50i-h616-mali",
 +				     "arm,mali-bifrost";

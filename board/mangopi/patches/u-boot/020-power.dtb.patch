@@ -1,7 +1,7 @@
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi
 index 3ab053bb0f..3d98d21cbd 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi
 @@ -68,6 +68,43 @@
  		enable-active-high;
  		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
@@ -46,10 +46,10 @@ index 3ab053bb0f..3d98d21cbd 100644
  };
  
  &ehci1 {
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 index 0e2d1f1629..596ad08045 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 @@ -30,7 +30,17 @@
  };
  

@@ -1,7 +1,7 @@
-diff --git a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 index bff30fa24f..f9b5d25533 100644
---- a/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero.dtsi
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero.dtsi
 @@ -24,6 +24,17 @@
  		stdout-path = "serial0:115200n8";
  	};
@@ -20,8 +20,8 @@ index bff30fa24f..f9b5d25533 100644
  	leds {
  		compatible = "gpio-leds";
  
---- a/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm/dts/sun50i-h616-orangepi-zero2.dts
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616-orangepi-zero2.dts
 @@ -217,6 +228,25 @@
  	};
  };
@@ -48,10 +48,10 @@ index bff30fa24f..f9b5d25533 100644
  &pio {
  	vcc-pc-supply = <&reg_aldo1>;
  	vcc-pf-supply = <&reg_aldo1>;
-diff --git a/arch/arm/dts/sun50i-h616.dtsi b/arch/arm/dts/sun50i-h616.dtsi
+diff --git a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 index 71f7fa8894..28e0eac5a9 100644
---- a/arch/arm/dts/sun50i-h616.dtsi
-+++ b/arch/arm/dts/sun50i-h616.dtsi
+--- a/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
++++ b/dts/upstream/src/arm64/allwinner/sun50i-h616.dtsi
 @@ -6,9 +6,12 @@
  #include <dt-bindings/interrupt-controller/arm-gic.h>
  #include <dt-bindings/clock/sun50i-h616-ccu.h>
@@ -79,9 +79,9 @@ index 71f7fa8894..28e0eac5a9 100644
  		#address-cells = <2>;
  		#size-cells = <2>;
 @@ -117,6 +126,49 @@
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x0 0x40000000>;
- 
+ 			resets = <&ccu RST_BUS_CE>;
+ 		};
+
 +		bus@1000000 {
 +			compatible = "allwinner,sun50i-h616-de33",
 +				     "allwinner,sun50i-a64-de2";
