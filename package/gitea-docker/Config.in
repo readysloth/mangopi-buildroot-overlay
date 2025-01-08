@@ -1,0 +1,6 @@
+config BR2_PACKAGE_GITEA_DOCKER
+	bool "gitea-docker"
+	select BR2_PACKAGE_DOCKER_COMPOSE
+	select BR2_PACKAGE_DOCKER_ENGINE
+	help
+		Docker-compose file to bring up self-hosted gitea instance

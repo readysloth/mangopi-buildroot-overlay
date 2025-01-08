@@ -1,0 +1,2 @@
+user 1000 user 1000 =1 /home/user /bin/sh -
+git 1001 git 1001 - /home/git /bin/sh -
