@@ -1,3 +1,4 @@
 #!/bin/sh
 
-cp -r /docker /backup/$(date --iso-8601=hours)
+mkdir -p /backup
+tar -c /docker | zstd > /backup/$(date -Ihours).tar.zstd
