@@ -1,18 +1,3 @@
-diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c b/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-index c255dba2c96d..b1e411f4ad57 100644
---- a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-@@ -957,7 +957,9 @@ static int sun50i_a64_ccu_probe(struct platform_device *pdev)
- 	val &= ~GENMASK(19, 16);
- 	writel(val | (0 << 16), reg + SUN50I_A64_PLL_AUDIO_REG);
- 
--	writel(0x515, reg + SUN50I_A64_PLL_MIPI_REG);
-+	ret = of_property_read_u32_index(of_chosen, "p-boot,framebuffer-start", 0, &val);
-+	if (ret)
-+		writel(0x515, reg + SUN50I_A64_PLL_MIPI_REG);
- 
- 	/* Set PLL MIPI as parent for TCON0 */
- 	val = readl(reg + SUN50I_A64_TCON0_CLK_REG);
 diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
 index 119ffb28aaf9..98f5af43f9e6 100644
 --- a/drivers/gpu/drm/drm_fbdev_ttm.c
